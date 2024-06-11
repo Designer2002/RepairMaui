@@ -10,13 +10,16 @@ namespace RepairMaui
 {
     internal class Animations
     {
-        public async static Task FrameBgColorBlink(Frame frame, Color c1, Color c2)
+        public static async Task BackColorAndScaleBlink(View element, Color c1, Color c2, double scale1, double scale2)
         {
-            await Task.WhenAll
-            (
-            frame.BackgroundColorTo(c2, length: 500, easing: Easing.Linear),
-            frame.BackgroundColorTo(c1, length: 500, easing: Easing.Linear)
-           );
+            await Task.WhenAll(
+                element.BackgroundColorTo(c2, length: 200, easing: Easing.Linear),
+                element.ScaleTo(scale2, length: 200, easing: Easing.Linear)
+            );
+            await Task.WhenAll(
+                element.BackgroundColorTo(c1, length: 200, easing: Easing.Linear),
+                element.ScaleTo(scale1, length: 200, easing: Easing.Linear)
+            );
         }
     }
 }
